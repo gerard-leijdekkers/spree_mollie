@@ -1,0 +1,14 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+nl:
+  spree:
+    mollie:
+      default_refund_reason: "Standaard terugbetaling reden"
+      already_refunded: "Deze betaling is al terugbetaald. Er kunnen geen acties meer op uitgevoerd worden."
+      transaction: "Mollie transactie"
+      payment_state: 'Betalingsstatus'
+      refund_successful: "Mollie terugbetaling succesvol"
+      refund_unsuccessful: "Mollie terugbetaling niet succesvol"
+      actions:
+        refund: "Terugbetalen"
