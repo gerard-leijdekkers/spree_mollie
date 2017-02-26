@@ -28,6 +28,8 @@ bundle
 bundle exec rails g spree_mollie:install
 ```
 
+Activate SpreeMollie by selecting Spree::PaymentMethod::Mollie as a new payment method in the backend. Set the 'payment methods' setting to a comma separated string with the mollie payment methods you want to present in the frontend. Default value "ideal, creditcard, mistercash, sofort, banktransfer, paypal, bitcoin, podiumcadeaukaart, paysafecard, kbc, belfius"
+
 Testing
 -------
 

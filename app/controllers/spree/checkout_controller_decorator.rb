@@ -34,7 +34,10 @@ Spree::CheckoutController.class_eval do
       payment_method = Spree::PaymentMethod.first
       service = MolliePaymentService.new(payment_method: payment_method)
 
-      @payment_methods = service.payment_methods
+      enabled_payment_methods = payment_method.preferred_payment_methods.split(/\s*[,;]\s*/)
+      @payment_methods = service.payment_methods.find_all do |p|
+        enabled_payment_methods.include? p["id"]
+      end
       @issuers = service.issuers
     end
 
