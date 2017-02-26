@@ -5,7 +5,7 @@ module Spree
     def notify
       MolliePaymentService.new(payment_id: params[:id]).update_payment_status
 
-      render nothing: true, status: :ok
+      head :ok
     end
 
     def check_payment_status
