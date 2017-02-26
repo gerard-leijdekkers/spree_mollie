@@ -6,6 +6,8 @@ describe "Order Paid By Mollie" do
 
   stub_authorization!
 
+  let!(:country) { create(:country, name: 'United States of America', iso: 'US') }
+  let!(:state) { create(:state, name: "Alabama", country: country, abbr: 'AL') }
   let!(:product) { create(:product, :name => 'iPad') }
   let!(:shipping_method) { create(:shipping_method) }
   before(:each) do
@@ -26,8 +28,6 @@ describe "Order Paid By Mollie" do
   end
 
   def prepare_order_for_payment
-    page.driver.block_unknown_urls
-    page.driver.allow_url("www.mollie.com")
     visit spree.root_path
     click_link 'iPad'
     click_button 'Add To Cart'
@@ -61,7 +61,7 @@ describe "Order Paid By Mollie" do
     expect(get "/mollie/check_status/#{@order.number}").to redirect_to expected_redirect
 
     # emulate mollie#notify call from external api
-    post '/mollie/notify', id: Spree::Payment.last.transaction_id, use_route: :spree
+    post '/mollie/notify', params: { id: Spree::Payment.last.transaction_id }
   end
 
   def cancel_order
@@ -104,7 +104,7 @@ describe "Order Paid By Mollie" do
       end
 
       specify do
-        find('#payment_status').should have_content(expected_payment_status)
+        expect(find('#payment_status')).to have_content(expected_payment_status)
       end
 
       it 'can see transaction id' do

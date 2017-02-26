@@ -1,9 +1,7 @@
 SpreeMollie
 ===========
 
-Except payments using the [Mollie](https://www.mollie.com) payment provider in Spree
-
-**NOTE This is currently only implemented agains Spree master (3.0.0.beta)**
+Accept payments using the [Mollie](https://www.mollie.com) payment provider in Spree
 
 [![wercker status](https://app.wercker.com/status/52c82d6a6ba0e8d59a4bde329939e420/m "wercker status")](https://app.wercker.com/project/bykey/52c82d6a6ba0e8d59a4bde329939e420)
 

@@ -1,5 +1,5 @@
-require "codeclimate-test-reporter"
-CodeClimate::TestReporter.start
+require 'simplecov'
+SimpleCov.start
 
 # Configure Rails Environment
 ENV['RAILS_ENV'] = 'test'
@@ -27,7 +27,8 @@ require 'spree_mollie/factories'
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include Rails.application.routes.url_helpers
-
+  config.include Devise::TestHelpers, type: :controller
+  
   # Infer an example group's spec type from the file location.
   config.infer_spec_type_from_file_location!
 
@@ -80,6 +81,10 @@ end
 
 require 'capybara-webkit'
 Capybara.javascript_driver = ENV['USE_SELENIUM_FOR_CAPYBARA'] ? :selenium : :webkit
+Capybara::Webkit.configure do |config|
+  config.block_unknown_urls
+  config.allow_url("www.mollie.com")
+end
 
 # Add VCR support.
 require 'vcr'
