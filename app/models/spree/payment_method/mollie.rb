@@ -1,7 +1,8 @@
 module Spree
   class PaymentMethod::Mollie < PaymentMethod
     preference :api_key, :string
-
+    preference :payment_methods, :string, default: "ideal, creditcard, mistercash, sofort, banktransfer, paypal, bitcoin, podiumcadeaukaart, paysafecard, kbc, belfius"
+    
     def payment_profiles_supported?
       false
     end
